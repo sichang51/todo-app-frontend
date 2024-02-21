@@ -4,12 +4,9 @@ import { Content } from "./components/Content";
 
 function App() {
   return (
-    <div>
-      <p>Hello World!</p>
+    <div className="app-container" style={{ display: "flex" }}>
       <SideNav />
-      {/* <Header /> */}
       <Content />
-      {/* <Footer /> */}
     </div>
   );
 }
