@@ -14,23 +14,23 @@ export function SideNav() {
       <h2 className="text-white">Sidebar Title</h2>
       <ul className="nav flex-column">
         <li className="nav-item mb-3">
-          <button type="button" className="btn btn-primary">
-            Primary
+          <button type="button" className="btn btn-outline-primary">
+            All Tasks
           </button>
         </li>
         <li className="nav-item mb-3">
-          <button type="button" className="btn btn-outline-secondary">
-            Secondary
+          <button type="button" className="btn btn-outline-warning">
+            Personal
           </button>
         </li>
         <li className="nav-item mb-3">
           <button type="button" class="btn btn-success">
-            Success
+            Grocery List
           </button>
         </li>
         <li className="nav-item mb-3">
           <button type="button" class="btn btn-info">
-            Info
+            Example
           </button>
         </li>
       </ul>
