@@ -1,12 +1,20 @@
+import React, { useState } from "react";
 import SideNav from "./components/common/SideNav";
 import { Content } from "./components/Content";
+
 // import { Footer } from "./Footer";
 
 function App() {
+  const [selectedTab, setSelectedTab] = useState("emptystring");
+
+  const handleTabChange = (tab) => {
+    setSelectedTab(tab);
+  };
+
   return (
     <div className="app-container" style={{ display: "flex" }}>
-      <SideNav />
-      <Content />
+      <SideNav onTabChange={handleTabChange} />
+      <Content selectedTab={selectedTab} />
     </div>
   );
 }
