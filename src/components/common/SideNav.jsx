@@ -1,33 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import homeLogo from "../../assets/home-button.png"; // Import the home logo image
 
 export function SideNav({ onTabChange }) {
-  // Define an array containing sidebar elements
+  const [expanded, setExpanded] = useState(false);
+
   const sidebarElements = [
     { label: "All Tasks", className: "btn-outline-primary", onClick: () => onTabChange("All Tasks") },
-    // () => created the actionable click to render content on right side
     { label: "Personal", className: "btn-outline-warning", onClick: () => onTabChange("Personal") },
-    { label: "Grocery List", className: "btn-success", onClick: () => onTabChange("Grocery List") },
-    { label: "Work", className: "btn-info", onClick: () => onTabChange("Work") },
+    { label: "Grocery List", className: "btn-outline-success", onClick: () => onTabChange("Grocery List") },
+    { label: "Work", className: "btn-outline-info", onClick: () => onTabChange("Work") },
   ];
 
   return (
     <div
       className="sidenav"
       style={{
-        backgroundColor: "black",
+        backgroundColor: "white", // Set background color for the entire sidebar
         paddingLeft: "20px",
         width: "250px",
-        height: "100vh",
+        height: "100vh", // Always set height to 100vh
+        overflowY: expanded ? "auto" : "hidden", // Allow vertical scrolling when expanded
         display: "flex",
         flexDirection: "column",
       }}
     >
-      <h2 className="text-white">Sidebar Title</h2>
-      <ul className="nav flex-column">
-        {/* Map over the sidebarElements array */}
+      <div style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
+        <img src={homeLogo} alt="Home Logo" style={{ width: "30px", height: "30px", marginRight: "10px" }} />
+        <h3 style={{ margin: 0 }}>Home</h3>
+      </div>
+
+      <h3
+        className="text-black"
+        onClick={() => setExpanded(!expanded)} // Toggle expanded state on title click
+        style={{ cursor: "pointer", margin: 0, marginBottom: 10 }} // Change cursor to pointer when hovering over title
+      >
+        My Lists
+      </h3>
+
+      <ul className="nav flex-column" style={{ display: expanded ? "block" : "none" }}>
         {sidebarElements.map((element, index) => (
           <li className="nav-item mb-3" key={index}>
-            {/* Generate button dynamically */}
             <button type="button" className={`btn ${element.className}`} onClick={element.onClick}>
               {element.label}
             </button>
