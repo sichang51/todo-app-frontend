@@ -1,23 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useState, useEffect } from "react";
 import contentbackground from "../assets/content-background-img.jpeg";
-import { CategoryIndex } from "../components/common/CategoryIndex";
+import { TodoIndex } from "../components/common/TodoIndex";
 
 export function Content({ selectedTab }) {
-  console.log(selectedTab);
+  const [todos, setTodos] = useState([]);
 
-  const [categories, setCategories] = useState([]);
-
-  const handleIndexCategories = () => {
-    console.log("handleIndexCategories");
-    axios.get("http://localhost:3000/categories.json").then((response) => {
-      console.log(response.data);
-      setCategories(response.data);
+  // Function to fetch todos based on category ID
+  const handleIndexTodos = (categoryID) => {
+    axios.get(`http://localhost:3000/todos.json?category_id=${categoryID}`).then((response) => {
+      setTodos(response.data);
     });
   };
 
-  useEffect(handleIndexCategories, []);
+  // Fetch todos for all tasks initially
+  useEffect(() => {
+    handleIndexTodos(null);
+  }, []);
+
+  // Fetch todos based on the selected tab
+  useEffect(() => {
+    if (selectedTab === "Personal") {
+      handleIndexTodos(2); // Fetch todos for Personal
+    } else if (selectedTab === "Grocery List") {
+      handleIndexTodos(3); // Fetch todos for Grocery List
+    } else if (selectedTab === "Work") {
+      handleIndexTodos(4); // Fetch todos for Work
+    } else {
+      handleIndexTodos(null); // Fetch all todos for other tabs
+    }
+  }, [selectedTab]);
 
   return (
     <div
@@ -56,7 +68,7 @@ export function Content({ selectedTab }) {
           <div>
             {/* Render content for Grocery List */}
             <h3>Grocery List</h3>
-            <CategoryIndex categories={categories} />
+            <TodoIndex todos={todos} />
             {/* Add your list of grocery items here */}
           </div>
         )}

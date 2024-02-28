@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import homeLogo from "../../assets/home-button.png"; // Import the home logo image
+import homeLogo from "../../assets/home-button.png";
 
 export function SideNav({ onTabChange }) {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(false); // Define expanded state
 
   const sidebarElements = [
     { label: "All Tasks", className: "btn-outline-primary", onClick: () => onTabChange("All Tasks") },
     { label: "Personal", className: "btn-outline-warning", onClick: () => onTabChange("Personal") },
     { label: "Grocery List", className: "btn-outline-success", onClick: () => onTabChange("Grocery List") },
+
     { label: "Work", className: "btn-outline-info", onClick: () => onTabChange("Work") },
   ];
 
@@ -15,11 +16,11 @@ export function SideNav({ onTabChange }) {
     <div
       className="sidenav"
       style={{
-        backgroundColor: "white", // Set background color for the entire sidebar
+        backgroundColor: "white",
         paddingLeft: "20px",
         width: "250px",
-        height: "100vh", // Always set height to 100vh
-        overflowY: expanded ? "auto" : "hidden", // Allow vertical scrolling when expanded
+        height: "100vh",
+        overflowY: expanded ? "auto" : "hidden",
         display: "flex",
         flexDirection: "column",
       }}
@@ -31,8 +32,8 @@ export function SideNav({ onTabChange }) {
 
       <h3
         className="text-black"
-        onClick={() => setExpanded(!expanded)} // Toggle expanded state on title click
-        style={{ cursor: "pointer", margin: 0, marginBottom: 10 }} // Change cursor to pointer when hovering over title
+        onClick={() => setExpanded(!expanded)}
+        style={{ cursor: "pointer", margin: 0, marginBottom: 10 }}
       >
         My Lists
       </h3>
