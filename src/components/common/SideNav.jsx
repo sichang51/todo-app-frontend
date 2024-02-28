@@ -24,7 +24,7 @@ export function SideNav({ onTabChange }) {
         flexDirection: "column",
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
+      <div style={{ display: "flex", alignItems: "center", marginBottom: "20px", marginTop: "20px" }}>
         <img src={homeLogo} alt="Home Logo" style={{ width: "30px", height: "30px", marginRight: "10px" }} />
         <h3 style={{ margin: 0 }}>Home</h3>
       </div>

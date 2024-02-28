@@ -1,8 +1,23 @@
 import React from "react";
-import contentbackground from "../assets/content-background-img.jpeg"; // Adjust the import path to point to the correct location
+import axios from "axios";
+import { useState, useEffect } from "react";
+import contentbackground from "../assets/content-background-img.jpeg";
+import { CategoryIndex } from "../components/common/CategoryIndex";
 
 export function Content({ selectedTab }) {
   console.log(selectedTab);
+
+  const [categories, setCategories] = useState([]);
+
+  const handleIndexCategories = () => {
+    console.log("handleIndexCategories");
+    axios.get("http://localhost:3000/categories.json").then((response) => {
+      console.log(response.data);
+      setCategories(response.data);
+    });
+  };
+
+  useEffect(handleIndexCategories, []);
 
   return (
     <div
@@ -41,6 +56,7 @@ export function Content({ selectedTab }) {
           <div>
             {/* Render content for Grocery List */}
             <h3>Grocery List</h3>
+            <CategoryIndex categories={categories} />
             {/* Add your list of grocery items here */}
           </div>
         )}
