@@ -5,7 +5,7 @@ import { Content } from "./components/Content";
 // import { Footer } from "./Footer";
 
 function App() {
-  const [selectedTab, setSelectedTab] = useState("All Tasks");
+  const [selectedTab, setSelectedTab] = useState("");
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);

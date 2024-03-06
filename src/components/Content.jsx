@@ -8,15 +8,13 @@ export function Content({ selectedTab }) {
 
   useEffect(() => {
     if (selectedTab) {
-      axios
-        .get(`http://localhost:3000/categories/${selectedTab}`)
-        .then((response) => {
-          setTodos(response.data.todos);
-        })
-        .catch((error) => {
-          console.error("Error fetching todos:", error);
-          setTodos([]); // Set empty array in case of error
-        });
+      axios.get(`http://localhost:3000/categories/${selectedTab}`).then((response) => {
+        setTodos(response.data.todos);
+      });
+      // .catch((error) => {
+      //   console.error("Error fetching todos:", error);
+      //   setTodos([]); // Set empty array in case of error
+      // });
     }
   }, [selectedTab]);
 

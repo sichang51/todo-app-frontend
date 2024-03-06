@@ -10,7 +10,9 @@ export function TodoIndex(props) {
           <h3>{todo.completed}</h3>
           <h3>{todo.created_at}</h3>
           <h3>{todo.user_id}</h3>
-          {/* <h3>{todo.category_id}</h3> */}
+
+          <br></br>
+          <br></br>
         </div>
       ))}
     </div>
