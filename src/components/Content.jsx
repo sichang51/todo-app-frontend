@@ -5,16 +5,20 @@ import { TodoIndex } from "../components/common/TodoIndex";
 
 export function Content({ selectedTab }) {
   const [todos, setTodos] = useState([]);
+  const [showWhiteBox, setShowWhiteBox] = useState(false);
 
   useEffect(() => {
     if (selectedTab) {
-      axios.get(`http://localhost:3000/categories/${selectedTab}`).then((response) => {
-        setTodos(response.data.todos);
-      });
-      // .catch((error) => {
-      //   console.error("Error fetching todos:", error);
-      //   setTodos([]); // Set empty array in case of error
-      // });
+      axios
+        .get(`http://localhost:3000/categories/${selectedTab}`)
+        .then((response) => {
+          setTodos(response.data.todos);
+          setShowWhiteBox(response.data.todos.length === 0); // Show white box if there are no todos
+        })
+        .catch((error) => {
+          console.error("Error fetching todos:", error);
+          setTodos([]);
+        });
     }
   }, [selectedTab]);
 
@@ -29,6 +33,9 @@ export function Content({ selectedTab }) {
         height: "100vh",
         overflow: "auto",
         padding: "20px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
       }}
     >
       <header>
@@ -36,10 +43,29 @@ export function Content({ selectedTab }) {
           <a href="#">Home</a> | <a href="#">Link</a>
         </nav>
       </header>
-      <div>
-        <h3>{selectedTab}</h3>
-        <TodoIndex todos={todos} />
+      <div style={{ display: "flex", justifyContent: "flex-start", width: "100%" }}>
+        {todos.length > 0 && ( // Only render TodoIndex component if there are todos
+          <div
+            className="todo-container"
+            style={{
+              backgroundColor: "white",
+              width: "40%",
+              padding: "20px",
+              borderRadius: "10px",
+              boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+              maxHeight: "80vh",
+              overflowY: "auto",
+              marginTop: "50px",
+            }}
+          >
+            <h3>{selectedTab}</h3>
+            <TodoIndex todos={todos} />
+          </div>
+        )}
       </div>
+      {showWhiteBox && (
+        <div style={{ backgroundColor: "white", padding: "20px", marginTop: "20px" }}>No todos to display</div>
+      )}
     </div>
   );
 }
