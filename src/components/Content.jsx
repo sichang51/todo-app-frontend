@@ -9,18 +9,12 @@ export function Content({ selectedTab }) {
   useEffect(() => {
     if (selectedTab) {
       axios
-        .get(`http://localhost:3000/categories?name=${selectedTab}`)
+        .get(`http://localhost:3000/categories/${selectedTab}`)
         .then((response) => {
-          const category = response.data[0]; // Assuming only one category matches the selected tab
-          if (category) {
-            setTodos(category.todos);
-          } else {
-            console.error("Category not found");
-            setTodos([]);
-          }
+          setTodos(response.data.todos);
         })
         .catch((error) => {
-          console.error("Error fetching category:", error);
+          console.error("Error fetching todos:", error);
           setTodos([]); // Set empty array in case of error
         });
     }

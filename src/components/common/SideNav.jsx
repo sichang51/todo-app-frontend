@@ -12,8 +12,9 @@ export function SideNav({ onTabChange }) {
       .then((response) => {
         const data = response.data.map((category) => ({
           label: category.name,
+          id: category.id,
           className: "btn-outline-primary",
-          onClick: () => onTabChange(category.name),
+          onClick: () => onTabChange(category.id),
         }));
         setSidebarElements(data);
       })
