@@ -1,16 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import homeLogo from "../../assets/home-button.png";
+import axios from "axios";
 
 export function SideNav({ onTabChange }) {
-  const [expanded, setExpanded] = useState(false); // Define expanded state
+  const [expanded, setExpanded] = useState(false);
+  const [sidebarElements, setSidebarElements] = useState([]);
 
-  const sidebarElements = [
-    { label: "All Tasks", className: "btn-outline-primary", onClick: () => onTabChange("All Tasks") },
-    { label: "Personal", className: "btn-outline-warning", onClick: () => onTabChange("Personal") },
-    { label: "Grocery List", className: "btn-outline-success", onClick: () => onTabChange("Grocery List") },
-
-    { label: "Work", className: "btn-outline-info", onClick: () => onTabChange("Work") },
-  ];
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/categories")
+      .then((response) => {
+        const data = response.data.map((category) => ({
+          label: category.name,
+          className: "btn-outline-primary",
+          onClick: () => onTabChange(category.name),
+        }));
+        setSidebarElements(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching sidebar elements:", error);
+      });
+  }, [onTabChange]);
 
   return (
     <div
