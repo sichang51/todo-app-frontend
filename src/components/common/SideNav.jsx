@@ -10,10 +10,11 @@ export function SideNav({ onTabChange }) {
     axios
       .get("http://localhost:3000/categories")
       .then((response) => {
-        const data = response.data.map((category) => ({
+        const colors = ["primary", "secondary", "success", "danger", "warning", "info"]; // Define Bootstrap contextual colors
+        const data = response.data.map((category, index) => ({
           label: category.name,
           id: category.id,
-          className: "btn-outline-primary",
+          className: `btn btn-outline-${colors[index % colors.length]}`, // Cycle through colors
           onClick: () => onTabChange(category.id),
         }));
         setSidebarElements(data);
@@ -52,7 +53,7 @@ export function SideNav({ onTabChange }) {
       <ul className="nav flex-column" style={{ display: expanded ? "block" : "none" }}>
         {sidebarElements.map((element, index) => (
           <li className="nav-item mb-3" key={index}>
-            <button type="button" className={`btn ${element.className}`} onClick={element.onClick}>
+            <button type="button" className={element.className} onClick={element.onClick}>
               {element.label}
             </button>
           </li>
