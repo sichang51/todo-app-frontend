@@ -3,9 +3,10 @@ export function TodoIndex(props) {
     <div>
       {props.todos.map((todo) => (
         <div key={todo.id}>
-          <h2>{todo.title}</h2>
+          <h2>Title: {todo.title}</h2>
+          <h2></h2>
           <div style={{ marginBottom: "10px" }}>
-            <h3>{todo.description}</h3>
+            <h3>Description: {todo.description}</h3>
           </div>
           <div style={{ marginBottom: "10px" }}>
             <h3>{todo.deadline}</h3>

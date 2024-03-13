@@ -58,7 +58,7 @@ export function Content({ selectedTab }) {
               marginTop: "50px",
             }}
           >
-            <h3>{selectedTab}</h3>
+            {/* <h3>{selectedTab}</h3> */}
             <TodoIndex todos={todos} />
           </div>
         )}
