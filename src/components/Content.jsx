@@ -3,6 +3,8 @@ import axios from "axios";
 import contentbackground from "../assets/content-background-img.jpeg";
 import { TodoIndex } from "../components/common/TodoIndex";
 
+import "../styles/Content.css";
+
 export function Content({ selectedTab }) {
   const [todos, setTodos] = useState([]);
   const [showWhiteBox, setShowWhiteBox] = useState(false);
@@ -13,7 +15,7 @@ export function Content({ selectedTab }) {
         .get(`http://localhost:3000/categories/${selectedTab}`)
         .then((response) => {
           setTodos(response.data.todos);
-          setShowWhiteBox(response.data.todos.length === 0); // Show white box if there are no todos
+          setShowWhiteBox(response.data.todos.length === 0);
         })
         .catch((error) => {
           console.error("Error fetching todos:", error);
@@ -23,42 +25,22 @@ export function Content({ selectedTab }) {
   }, [selectedTab]);
 
   return (
-    <div
-      className="content"
-      style={{
-        flex: 1,
-        backgroundImage: `url(${contentbackground})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        height: "100vh",
-        overflow: "auto",
-        padding: "20px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
+    <div className="content" style={{ backgroundImage: `url(${contentbackground})` }}>
       <header>
-        <nav>
-          <a href="#">Home</a> | <a href="#">Link</a>
+        <nav className="header-bar">
+          <a href="#" className="header-home">
+            {selectedTab} {/* Show the selected tab name directly */}
+          </a>{" "}
+          |{" "}
+          <a href="#" className="header-link">
+            Link
+          </a>
         </nav>
       </header>
+
       <div style={{ display: "flex", justifyContent: "flex-start", width: "100%" }}>
-        {todos.length > 0 && ( // Only render TodoIndex component if there are todos
-          <div
-            className="todo-container"
-            style={{
-              backgroundColor: "white",
-              width: "40%",
-              padding: "20px",
-              borderRadius: "10px",
-              boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-              maxHeight: "80vh",
-              overflowY: "auto",
-              marginTop: "50px",
-            }}
-          >
-            {/* <h3>{selectedTab}</h3> */}
+        {todos.length > 0 && (
+          <div className="todo-container">
             <TodoIndex todos={todos} />
           </div>
         )}

@@ -3,22 +3,22 @@ export function TodoIndex(props) {
     <div>
       {props.todos.map((todo) => (
         <div key={todo.id}>
-          <h2>Title: {todo.title}</h2>
+          <h3>Title: {todo.title}</h3>
           <h2></h2>
           <div style={{ marginBottom: "10px" }}>
-            <h3>Description: {todo.description}</h3>
+            <h4>Description: {todo.description}</h4>
           </div>
           <div style={{ marginBottom: "10px" }}>
-            <h3>{todo.deadline}</h3>
+            <h4>{todo.deadline}</h4>
           </div>
           <div style={{ marginBottom: "10px" }}>
-            <h3>{todo.completed}</h3>
+            <h4>{todo.completed}</h4>
           </div>
           <div style={{ marginBottom: "10px" }}>
-            <h3>{todo.created_at}</h3>
+            <h4>{todo.created_at}</h4>
           </div>
           <div style={{ marginBottom: "10px" }}>
-            <h3>{todo.user_id}</h3>
+            <h4>{todo.user_id}</h4>
           </div>
           <br></br>
           <br></br>

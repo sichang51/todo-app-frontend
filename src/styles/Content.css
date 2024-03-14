@@ -1,0 +1,51 @@
+header {
+  margin-bottom: 20px; /* Adjust as needed */
+}
+
+header nav {
+  margin-bottom: 10px; /* Adjust as needed */
+}
+
+header nav a {
+  text-decoration: none;
+  color: blue;
+  margin-right: 10px; /* Adjust as needed */
+}
+
+.header-home {
+  color: blue;
+  margin-left: 10px;
+}
+
+.header-link {
+  color: blue;
+  margin-left: 10px;
+}
+
+header nav a:last-child {
+  margin-right: 0;
+}
+
+.todo-container {
+  background-color: white;
+  width: 40%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-height: 80vh;
+  overflow-y: auto;
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+.content {
+  flex: 1;
+  background-size: "cover";
+  background-position: "center";
+  height: "100vh";
+  overflow: "auto";
+  padding: "20px";
+  display: "flex";
+  flex-direction: "column";
+  align-items: "center";
+}
